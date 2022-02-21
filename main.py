@@ -36,6 +36,21 @@ class termo():
             if(y == letra):
                 self.letrasSemPos.remove(y)
 
+    def imprimirResultados(self):
+        os.system("cls")
+        imprimirLetras = False
+        for x in self.letras:
+            if(x != ""):
+                imprimirLetras = True
+        if(imprimirLetras == True):
+            print("Letras conhecidas em suas respectivas posições: {} ".format(self.letras))
+        else:
+            print("Ainda não foram introduzidas letras em suas respectivas posições!")
+
+        if(len(self.letrasSemPos) > 0):
+            print("Letras conhecidas fora de posição: {}".format(self.letrasSemPos))
+        else:
+            print("Ainda não foram introduzidas letras sem posição")      
 
     def inserirComPosicao(self):
         fimLoop = False
@@ -48,8 +63,8 @@ class termo():
                 pass
             else:
                 fimLoop = True
-            os.system("cls")
-            print(self.letras)
+            self.imprimirResultados()
+
 
     def inserirSemPosicao(self):
         fimLoop = False
@@ -60,8 +75,7 @@ class termo():
                 pass
             else:
                 fimLoop = True
-            os.system("cls")
-            print(self.letrasSemPos)
+            self.imprimirResultados()
 
 
     def mainLoop(self):
@@ -78,11 +92,11 @@ class termo():
                 try:
                     if (len(self.possiveisPalavras) > 1):
                         print("Essas são as possiveis palavras: \n")
+                        for x in self.possiveisPalavras:
+                            print(x)
                     else:
                         self.termo = self.possiveisPalavras[0]
                         print("A palavra é {}".format(self.termo))
-                    for x in self.possiveisPalavras:
-                        print(x)
                 except:
                     print("Erro, nenhuma palavra foi encontrada!")
 
