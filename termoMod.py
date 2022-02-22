@@ -4,7 +4,7 @@ from unidecode import unidecode
 class termo():
     def __init__(self):
         self.possiveisPalavras = []
-        self.letrasSemPos = []
+        self.letrasSemPos = [["" for i in range(6)] for i in range(5)]
         self.letras = ["", "", "", "", ""]
         self.letrasNao = []
         self.termo = ""
@@ -20,10 +20,17 @@ class termo():
                 for x in range(len(self.letras)):
                     if(self.letras[x] == ""):
                         pass
-                    elif(unidecode(self.letras[x]) == unidecode(linhaParaChecar[x])):
+                    elif(unidecode(self.letras[x]) == unidecode(linhaParaChecar[x].lower())):
                         pass
                     else:
                         AdicionarPalavra = False
+                    for y in self.letrasNao:
+                        if(unidecode(y) == unidecode(linhaParaChecar[x].lower())):
+                            AdicionarPalavra = False
+                    for y in range(5):
+                        if(unidecode(linhaParaChecar[x].lower()) == self.letrasSemPos[y][5]):
+                            if(self.letrasSemPos[y][x] == '1'):
+                                AdicionarPalavra = False
                 if(AdicionarPalavra):
                     self.possiveisPalavras.append(linha)
 
@@ -49,7 +56,7 @@ class termo():
             print("Ainda não foram introduzidas letras sem posição")      
 
     def inserirNaoUsadas(self, letraInserida):
-        self.letrasNao.append(letraInserida)
+        self.letrasNao.append(letraInserida.lower())
         print(self.letrasNao)
 
 
@@ -60,7 +67,16 @@ class termo():
 
 
     def inserirSemPosicao(self, letraInserida, posicao):
-            self.letrasSemPos.append(letraInserida)
+            for y in range(5):
+                if(self.letrasSemPos[y][5] == letraInserida.lower()):
+                    self.letrasSemPos[y][posicao] = "1"
+                    break
+                elif(self.letrasSemPos[y][5] == ''):
+                    self.letrasSemPos[y][5] = letraInserida.lower()
+                    self.letrasSemPos[y][posicao] = "1"
+                    break
+
+            print(self.letrasSemPos)
             self.imprimirResultados()
 
 
