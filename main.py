@@ -1,3 +1,0 @@
-from termoMod import termo
-
-
