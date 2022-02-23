@@ -5,6 +5,7 @@ class termo():
     def __init__(self):
         self.possiveisPalavras = []
         self.letrasSemPos = [["" for i in range(6)] for i in range(5)]
+        self.listaLetrasSemPos = []
         self.letras = ["", "", "", "", ""]
         self.letrasNao = []
         self.termo = ""
@@ -15,7 +16,7 @@ class termo():
            print(self.letras)
            linhas = f.readlines()
            for linha in linhas:
-                linhaParaChecar = list(linha)
+                linhaParaChecar = list(linha) 
                 AdicionarPalavra = True
                 for x in range(len(self.letras)):
                     if(self.letras[x] == ""):
@@ -27,10 +28,21 @@ class termo():
                     for y in self.letrasNao:
                         if(unidecode(y) == unidecode(linhaParaChecar[x].lower())):
                             AdicionarPalavra = False
+                    contadorLetra = 0
                     for y in range(5):
                         if(unidecode(linhaParaChecar[x].lower()) == self.letrasSemPos[y][5]):
                             if(self.letrasSemPos[y][x] == '1'):
-                                AdicionarPalavra = False
+                                AdicionarPalavra = False #tem um problema q ele está contabilizando palavras que não tem a letra sem posição corrigir
+                            else:
+                                contadorLetra += 1
+                acerto = 0
+                for z in self.listaLetrasSemPos:
+                    for x in range(len(self.letras)):
+                        if(z == linhaParaChecar[x].lower()):
+                            acerto += 1
+                    if(acerto == 0):
+                        AdicionarPalavra = False
+                        break
                 if(AdicionarPalavra):
                     self.possiveisPalavras.append(linha)
 
@@ -76,6 +88,7 @@ class termo():
                     self.letrasSemPos[y][posicao] = "1"
                     break
 
+            self.listaLetrasSemPos.append(letraInserida.lower())
             print(self.letrasSemPos)
             self.imprimirResultados()
 
