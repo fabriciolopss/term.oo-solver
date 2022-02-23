@@ -37,14 +37,14 @@ class guiTermo:
         
 
     def color_change(self, botao):
-        if(self.button[botao].cget('bg') == "grey"):
-            self.button[botao].config(bg = "yellow")
+        if(self.button[botao].cget('bg') == "#d0d0d0"):
+            self.button[botao].config(bg = "#FFE61B")
             self.statusBotoes[botao] = 1
-        elif(self.button[botao].cget('bg') == "yellow"):
-            self.button[botao].config(bg = "green")      
+        elif(self.button[botao].cget('bg') == "#FFE61B"):#yellow
+            self.button[botao].config(bg = "#B5FE83")      
             self.statusBotoes[botao] = 2    
-        elif(self.button[botao].cget('bg') == "green"):
-            self.button[botao].config(bg = "grey")  
+        elif(self.button[botao].cget('bg') == "#B5FE83"): #green
+            self.button[botao].config(bg = "#d0d0d0")  #grey
             self.statusBotoes[botao] = 0
         print(self.statusBotoes)
 
@@ -53,16 +53,20 @@ class guiTermo:
             self.letras[x].set(self.letras[x].get().upper())
 
     def configurarJanela(self):
+        self.janela.iconbitmap('password_security_icon_154431.ico')
+        self.janela['background'] = '#F7F7F7'
+        self.janela.title("Resolvedor de Termos")
         self.janela.geometry('600x600')
         for x in range(5):
-            self.button.append(tk.Button(self.janela,command= lambda x1=x: self.color_change(x1),bg = 'grey')) 
-            self.button[x].place(x = (x * 100) + 75, y = 100, width = 50, height = 50)
+            self.button.append(tk.Button(self.janela,command= lambda x1=x: self.color_change(x1),bg = '#d0d0d0')) 
+            self.button[x].place(x = (x * 100) + 75, y = 110, width = 50, height = 50)
             variavel = tk.StringVar()
             self.letras.append(variavel)
             self.entrys.append(tk.Entry(self.janela, textvariable = self.letras[x], font = ('calibre', 10, 'bold'), justify = 'center'))
             self.entrys[x].bind('<KeyRelease>', self.caps)
             self.entrys[x].place(x = (x * 100) + 75, y = 50, width = 50, height = 50)
-        self.submit = tk.Button(self.janela, text = "Finalizar rodada", command = self.submitCommand, font = ('calibre', 12, 'bold'), justify = 'center')
+        self.submit = tk.Button(self.janela, text = "FINALIZAR RODADA", command = self.submitCommand, font = ('calibre', 12, 'bold'), justify = 'center',
+         bg = '#ececec', activebackground = '#B5FE83')
         self.submit.place(x = 200, y = 200, width = 200, height = 100)
         self.scrollBar.pack(side = tk.RIGHT, fill = tk.Y)
         self.listaResposta = tk.Listbox(self.janela, yscrollcommand= self.scrollBar.set, font = ('calibre', 10, 'bold'))
