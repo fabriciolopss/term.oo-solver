@@ -35,8 +35,9 @@ class termo():
                                 AdicionarPalavra = False #tem um problema q ele está contabilizando palavras que não tem a letra sem posição corrigir
                             else:
                                 contadorLetra += 1
-                acerto = 0
+
                 for z in self.listaLetrasSemPos:
+                    acerto = 0
                     for x in range(len(self.letras)):
                         if(z == linhaParaChecar[x].lower()):
                             acerto += 1
