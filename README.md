@@ -9,13 +9,13 @@ Este é um projeto em Python que visa automatizar a resolução de [term.ooo](ht
 2. Clone este repositório:
 
     ```bash
-    git clone https://github.com/seu-usuario/seu-projeto.git
+    git clone https://github.com/seu-usuario/term.oo-solver.git
     ```
 
 3. Acesse o diretório do projeto:
 
     ```bash
-    cd seu-projeto
+    cd term.oo-solver
     ```
 
 4. Instale as dependências usando o `pip`:
@@ -27,7 +27,7 @@ Este é um projeto em Python que visa automatizar a resolução de [term.ooo](ht
 5. Execute o programa:
 
     ```bash
-    python resolver_term.py
+    python gui.py
     ```
 
 6. Siga as instruções exibidas na tela para inserir os detalhes da tarefa que deseja resolver.
